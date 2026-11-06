@@ -421,24 +421,6 @@ plt.show()
 # Very good already! But can we try to smooth even more the loss landscape?
 
 # In[ ]:
-
-
-class Block(nn.Module):
-    def __init__(self, ci,co,pool=True):
-        super().__init__()
-        layers= [ nn.Conv2d(ci,co,3,padding=1),
-        nn.BatchNorm2d(co),
-        nn.ReLU(inplace=True),
-        nn.Conv2d(co,co,3,padding=1),
-        nn.BatchNorm2d(co),
-        nn.ReLU(inplace=True),]
-        if pool:
-            layers.append(nn.MaxPool2d(2))
-        self.net = nn.Sequential(*layers)
-
-    def forward(self, x):
-        return self.net(x)
-
 class BatchNormalizedNN(nn.Module):
     def __init__(self, in_channels, num_classes):
             super(BatchNormalizedNN, self).__init__()
